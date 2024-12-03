@@ -234,7 +234,7 @@
 
         function enviarComanda() {
             // Verifica se há um usuário logado no localStorage
-            const nomeUsuario = localStorage.getItem('nomeUsuario');
+            const nomeUsuario = localStorage.getItem('usuarioLogado');
             if (!nomeUsuario) {
                 Swal.fire({
                     title: 'Atenção!',
