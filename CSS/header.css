@@ -1,0 +1,22 @@
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #ffcc00;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+.texto-direita {
+    margin-left: 150px;
+    color: #ff6600;
+}
+.endere{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    color: #ff6600;
+}
+.ola{
+    text-align: center;
+    transform: translate(0px, 0px);
+    margin: 50px;
+}

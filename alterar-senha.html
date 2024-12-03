@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./IMG/maiscoxinhasem.ico" type="image/x-icon">
+    <title>Salgado da Vovó - Alterar Senha</title>
+    <link rel="stylesheet" href="CSS/cadastro.css">
+    
+    <style>
+        body {
+            background: url('./IMG/fundo.jpg') no-repeat center center;
+            background-size: 100% 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            width: 280px;
+            height: 150px;
+            border-radius: 100%;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+        
+        .campo {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .campo img {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-70%);
+            cursor: pointer;
+            width: 30px; /* Ajusta o tamanho da imagem */
+            height: 30px; /* Ajusta o tamanho da imagem */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="HomeLOGIN.html" class="logo">
+        <img src="./IMG/Desde-1950v3.png" alt="Descrição da imagem" class="logo" title="Voltar para HOME">
+    </a>
+    <div class="caixalogin" style="transform: translate(0px, -70px);">
+        <h2>Alterar Senha</h2>
+        <form onsubmit="event.preventDefault(); alterarSenha();">
+            <div class="campo">
+                <input type="password" id="senhaAntiga" required>
+                <label>Senha Antiga</label>
+                <img src="./IMG/olhoabertov2.png" alt="Alternar visibilidade da senha" id="senhaIconAntiga" onclick="togglePassword('senhaAntiga', 'senhaIconAntiga')">
+            </div>
+            <div class="campo">
+                <input type="password" id="novaSenha" required>
+                <label>Nova Senha</label>
+                <img src="./IMG/olhoabertov2.png" alt="Alternar visibilidade da senha" id="senhaIconNova" onclick="togglePassword('novaSenha', 'senhaIconNova')">
+            </div>
+            <button type="submit">Alterar Senha</button>
+        </form>
+    </div>
+
+    <script>
+        function alterarSenha() {
+            const senhaAntiga = document.getElementById('senhaAntiga').value;
+            const novaSenha = document.getElementById('novaSenha').value;
+
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+            if (usuarioLogado && senhaAntiga === usuarioLogado.senha) {
+                if (novaSenha) {
+                    // Atualiza a senha no objeto do usuário e no localStorage
+                    usuarioLogado.senha = novaSenha;
+                    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+                    alert('Senha alterada com sucesso!');
+                    window.location.href = 'perfil.html'; // Redireciona para a página de confirmação
+                } else {
+                    alert('Por favor, insira uma nova senha.');
+                }
+            } else {
+                alert('A senha antiga está incorreta.');
+            }
+        }
+
+        // Função para alternar a visibilidade da senha
+        function togglePassword(senhaId, iconId) {
+            const senhaInput = document.getElementById(senhaId);
+            const icon = document.getElementById(iconId);
+
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                icon.src = './IMG/olhofechadov2.png';  // Atualize para o ícone de senha oculta
+            } else {
+                senhaInput.type = 'password';
+                icon.src = './IMG/olhoabertov2.png';  // Atualize para o ícone de senha visível
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+.container {
+  max-width: 1200px;
+  position: relative; /* Tornando a posição do contêiner 'relative' para referenciar a posição do card */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Isso vai distribuir o conteúdo entre o título e o card */
+}
+
+.unique-card-container {
+  position: absolute; /* Agora o card vai ficar no canto direito */
+  top: 50%; /* Posiciona verticalmente no meio */
+  right: 0px; /* Posiciona o card diretamente na borda direita */
+  transform: translateY(-50%); /* Ajusta a posição para que o card fique centralizado verticalmente */
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  border-radius: 30%;
+  background-color: #ffe26d;
+  transition: all 0.5s ease;
+}
+
+.unique-card-container:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.unique-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 auto 20px; /* Centralizando a bola dentro da caixa */
+  transition: transform 0.3s ease;
+}
+
+.unique-name {
+  font-weight: 600;
+  font-size: 18px;
+  color: #333;
+}
+
+.unique-username {
+  font-size: 14px;
+  color: #888;
+}

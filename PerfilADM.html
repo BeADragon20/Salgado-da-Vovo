@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./IMG/maiscoxinhasem.ico" type="image/x-icon">
+    <title>Salgado da Vovó - Usuários Cadastrados</title>
+    <link rel="stylesheet" href="CSS/cadastro.css">
+
+    <style>
+        body {
+            background: url('./IMG/fundo.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .logo {
+            width: 280px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            background: #e4c200;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .user-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #cccccc00;
+            border-radius: 8px;
+            background: #ffe26d;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .user-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .user-card img {
+            margin-bottom: 15px;
+        }
+
+        .user-card h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .user-card p {
+            margin: 5px 0;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+        }
+
+        .edit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn:hover {
+            background-color: #e53935;
+        }
+
+        .input-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            transform: translate(170px,0px);
+        }
+
+        .mostrar-senha {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translate(-315px, -11px);
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+        }
+
+        .mostrar-senha img {
+            width: 100%;
+            height: 100%;
+        }
+
+        input {
+            border-radius: 3px;
+            border: 1px solid black;
+            background-color: #ffe26d;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="Home.html" class="logo">
+        <img src="./IMG/Desde-1950v3.png" alt="Descrição da imagem" class="logo" title="Voltar para HOME">
+    </a>
+    <div class="container" id="admuser">
+        <h2>Usuários Cadastrados</h2>
+        <div id="usuariosLista"></div>
+    </div>
+
+    <script>
+        function carregarUsuarios() {
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const listaUsuarios = document.getElementById('usuariosLista');
+            listaUsuarios.innerHTML = '';
+
+            if (usuarios.length === 0) {
+                listaUsuarios.innerHTML = '<p>Nenhum usuário cadastrado.</p>';
+                return;
+            }
+
+            usuarios.forEach((usuario, index) => {
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
+
+                userCard.innerHTML = `
+                    <img src="${usuario.avatar}" alt="Avatar" class="avatar" id="avatar-${index}">
+                    <input type="file" accept="image/*" onchange="alterarAvatar(event, ${index})">
+                    <h3><input type="text" value="${usuario.nome}" onchange="editarUsuario(${index}, 'nome', this.value)"></h3>
+                    <p><strong>Endereço: </strong><input type="text" value="${usuario.endereco}" onchange="editarUsuario(${index}, 'endereco', this.value)"></p>
+                    <p><strong>Email: </strong><input type="email" value="${usuario.email}" onchange="editarUsuario(${index}, 'email', this.value)"></p>
+                    <p><strong>CPF: </strong><input type="number" value="${usuario.cpf}" onchange="editarUsuario(${index}, 'cpf', this.value)"></p>
+                    <div class="input-container">
+                        <p><strong>Senha: </strong><input type="password" id="senha-${index}" value="${usuario.senha}" onchange="editarUsuario(${index}, 'senha', this.value)"></p>
+                        <div class="mostrar-senha" onclick="togglePassword(${index})">
+                            <img id="senhaIcon-${index}" src="./IMG/olhoabertov2.png" alt="Mostrar senha">
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button class="edit-btn" onclick="salvarAlteracoes(${index})">Salvar</button>
+                        <button class="delete-btn" onclick="excluirUsuario(${index})">Excluir</button>
+                    </div>
+                `;
+
+                listaUsuarios.appendChild(userCard);
+            });
+        }
+
+        function editarUsuario(index, campo, valor) {
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            usuarios[index][campo] = valor;
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        }
+
+        function excluirUsuario(index) {
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            usuarios.splice(index, 1);
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            carregarUsuarios();
+        }
+
+        function salvarAlteracoes(index) {
+            alert(`Alterações no usuário ${index + 1} foram salvas.`);
+        }
+
+        function alterarAvatar(event, index) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                usuarios[index].avatar = e.target.result;
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+                // Atualiza a visualização do avatar
+                document.getElementById(`avatar-${index}`).src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Função para alternar a visibilidade da senha
+        function togglePassword(index) {
+            const senhaInput = document.getElementById(`senha-${index}`);
+            const icon = document.getElementById(`senhaIcon-${index}`);
+
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                icon.src = './IMG/olhofechadov2.png';
+            } else {
+                senhaInput.type = 'password';
+                icon.src = './IMG/olhoabertov2.png';
+            }
+        }
+
+        window.onload = carregarUsuarios;
+    </script>
+</body>
+
+</html>

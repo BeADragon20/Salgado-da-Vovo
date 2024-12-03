@@ -1,0 +1,37 @@
+.texto-centralizado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+}
+
+.logo {
+    width: 300px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.imgcomida{
+    width: 200px;
+    height: 150px;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #ffcc00;
+    width: 100%;
+    
+}
+#sobre {
+    background-color: #ffcc00;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+    width: 80%; 
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translate(0px, 10px);    
+    bottom: 100%;
+
+}

@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe26d;
+    color: #333;
+}
+header, footer {
+    background-color: #ffcc00;
+    text-align: center;
+    padding: 20px;
+}
+section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #ffcc00;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h1, h2 {
+    color: #ff6600;
+}
+.toggle-button {
+    cursor: pointer;
+    color: #000000;
+    margin-bottom: 10px;
+    font-size: 30px; 
+    text-decoration: underline;
+}
+.toggle-button:hover{
+    color: #ff6600;
+    opacity: 0.8;
+}
+.total {
+    font-weight: bold;
+    margin-top: 20px;
+}
+.item-list {
+    margin-top: 10px;
+    display: none; /* Oculta a lista de itens inicialmente */
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between; /* Espalha os itens pelo espaço */
+    align-items: center;
+    padding: 5px 0;
+    
+}
+
+.item-row label {
+    flex: 1; /* O rótulo ocupa o espaço restante */
+    font-size: 18px;
+    display: flex; /* Faz o rótulo e checkbox ficarem na mesma linha */
+    align-items: center; /* Alinha verticalmente */
+}
+
+.item-quantidade {
+    width: 60px;
+    text-align: center;
+    margin-left: 10px; /* Espaçamento entre o rótulo e o campo de quantidade */
+    
+}
+
+.quantidade-wrapper {
+    display: flex;
+    justify-content: right; /* Centraliza o campo de quantidade */
+    flex: 1; /* Para ocupar o espaço disponível */
+    
+}
+
+.checkbox-wrapper {
+    display: flex; /* Permite alinhar checkbox e rótulo */
+    align-items: center; /* Alinha verticalmente */
+    
+}
+.btn {
+    background-color: transparent; /* Cor do botão */
+    color: black; /* Cor do texto do botão */
+    border: solid; /* Remove a borda do botão */
+    padding: 10px 20px; /* Adiciona preenchimento ao botão */
+    border-radius: 5px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+}
+.btn:hover {
+    border: solid;
+    background-color: #ff6600; /* Cor do botão ao passar o mouse */
+}
+.card-container {
+    border: -20px solid #ffcc00;
+    border-radius: 10px;
+    padding: 10px;
+    margin: -10px;
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+}
+
+.card-container.open {
+    max-height: 1300px; /* Ajuste conforme o número de cards */
+}
+
+.toggle-btn:hover {
+    color: black;
+}
+
+.toggle-btn {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 50px;
+    margin-left: 0;
+    color: #fffffd;
+    transform: translate(-230px, -15px);
+    border-top-left-radius: 100px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 100px;
+    transition: color 0.3s;
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.produtos-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.produtos-title h2 {
+    margin-right: 10px;
+}

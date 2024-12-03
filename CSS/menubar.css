@@ -1,0 +1,130 @@
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: translate(0px, 225px);
+
+}
+.menu-icon:hover{
+    opacity: 0.6;
+}
+
+.menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #ffcc00;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    margin: 20px 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.menu ul li a:hover {
+    text-decoration: underline;
+}
+
+.menu-close {
+    font-size: 20px;
+    cursor: pointer;
+    float: right;
+}
+.menu-close:hover{
+    opacity: 0.6;
+}
+
+/* Barra de SETA */
+.card-container {
+    border: -20px solid #ffcc00;
+    border-radius: 10px;
+    padding: 10px;
+    margin: -10px;
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+}
+
+.card-container.open {
+    max-height: 1300px; /* Ajuste conforme o número de cards */
+}
+.toggle-btn:hover{
+    color: black;
+    
+}
+    
+.toggle-btn {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 50px;
+    margin-left: 0;
+    color: #fffffd;
+    transform: translate(-140px, -15px);
+    border-top-left-radius: 100px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 100px;
+    transition: color 0.3s;
+
+}
+
+.toggle-btnCar{
+     height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 50px;
+    margin-left: 0;
+    color: #fffffd;
+    transform: translate(-140px, -15px);
+    border-top-left-radius: 100px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 100px;
+    transition: color 0.3s;
+}
+
+.toggle-btnCar:hover{
+    color: black;
+    
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.produtos-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.produtos-title h2 {
+    margin-right: 10px;
+}

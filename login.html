@@ -1,0 +1,110 @@
+<!-- Nome de usuario: ADM-Gustavo 
+     Senha: ADM-Gustavo-Senha -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./IMG/maiscoxinhasem.ico" type="image/x-icon">
+    <title>Login</title>
+    <link rel="stylesheet" href="./CSS/login.css">
+    <style>
+        body {
+            background: url('./IMG/fundo.jpg') no-repeat center center;
+            background-size: 100% 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            width: 280px;
+            height: 150px;
+            border-radius: 100%;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="Home.html">
+        <img src="./IMG/Desde-1950v3.png" alt="Voltar para HOME" class="logo" title="Voltar para HOME">
+    </a>
+
+    <div class="caixalogin" style="transform: translateY(0);">
+        <div class="img-user">
+            <img src="./IMG/Imagem-Usuário.png">
+        </div>
+        <h2>Entrar na Conta</h2>
+        <form id="loginForm">
+            <div class="campo">
+                <input type="text" id="usuario" required>
+                <label>Usuário</label>
+            </div>
+            <div class="campo">
+                <input type="password" id="senha" required>
+                <label>Senha</label>
+            </div>
+            <input type="checkbox" checked="checked" class="checbox">
+            <label class="checkbox2">Lembrar-me</label><br><br>
+            <button type="submit">Entrar</button>
+        </form>
+        <button class="buttoncad" onclick="window.location.href='cadastro.html'">Se Cadastre!</button>
+    </div>
+
+    <script>
+        // Função de login
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Previne o envio do formulário
+
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+
+            // Verifica se o login é do administrador
+            if (usuario === 'ADM-Gustavo' && senha === 'ADM-Gustavo-Senha') {
+                // Armazena o usuário administrador logado
+                const usuarioAdm = {
+                    nome: 'ADM-Gustavo',
+                    senha: 'ADM-Gustavo-Senha',
+                    avatar: './IMG/Imagem-Usuário.png'
+                };
+                localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAdm)); // Salva no localStorage
+                // Redireciona para a página de administração
+                window.location.href = 'PerfilADM.html';
+                return;
+            }
+
+            // Recupera os dados armazenados no localStorage
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            // Verifica se o usuário existe no array
+            const usuarioEncontrado = usuarios.find(user => user.nome === usuario && user.senha === senha);
+
+            if (usuarioEncontrado) {
+                // Se os dados estiverem corretos, armazena o usuário logado
+                localStorage.setItem('usuarioLogado', JSON.stringify(usuarioEncontrado));
+                // Redireciona para a página de login bem-sucedido
+                window.location.href = 'HomeLOGIN.html';
+            } else {
+                // Se o usuário ou senha estiverem incorretos, exibe um alerta
+                const usuarioExiste = usuarios.some(user => user.nome === usuario);
+
+                if (!usuarioExiste) {
+                    alert('Usuário não existe!');
+                } else {
+                    alert('Senha incorreta!');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

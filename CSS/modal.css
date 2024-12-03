@@ -1,0 +1,33 @@
+.modal-content {
+    background-color: #ffcc00; /* Cor de fundo do modal */
+    border: 2px solid #007bff; /* Cor da borda do modal */
+}
+
+/* Estilo do título do modal */
+.modal-header {
+    background-color: #007bff; /* Cor de fundo do cabeçalho do modal */
+    color: #000000; /* Cor do texto do cabeçalho */
+}
+
+/* Estilo dos botões do modal */
+.modal-footer .btn-secondary {
+    background-color: green; /* Cor de fundo do botão "Não" */
+    color: #000000; /* Cor do texto do botão "Não" */
+}
+
+.modal-footer .btn-primary {
+    background-color: #ff6600; /* Cor de fundo do botão "Sim" */
+    color: #000000; /* Cor do texto do botão "Sim" */
+}
+
+/* Estilo dos botões no restante da página */
+.modalbtn {
+    background-color: #007bff; /* Cor de fundo dos botões */
+    color: #000000; /* Cor do texto dos botões */
+    border: none;
+    border-radius: 15px;
+    padding: 7px 12px;
+}
+.modalbtn:hover{
+    opacity: 0.6;
+}
